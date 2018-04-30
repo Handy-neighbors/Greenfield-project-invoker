@@ -11,6 +11,7 @@ const header1={
   fontFamily: 'Lobster',
   marginTop:'2px',
 };
+
 //the style for retrieve one patient
 const header3={
   color:'black',
@@ -74,7 +75,7 @@ const button1={
   backgroundColor: '#bb280e',
   color: 'white',
   border: '2px solid #bb280e',
-  marginTop:'5px',
+  marginTop:'10px',
   fontSize:'20px',
   borderRadius: '10px',
   fontFamily: 'Lobster',
@@ -101,7 +102,7 @@ class Home extends React.Component {
     //all the data save before sent in state
     this.state={
       loggedIn:true,
-      patientNumber:3,
+      patientName:'',
       //the data get from retrieve
       data:{},
     };
@@ -110,7 +111,7 @@ class Home extends React.Component {
   //patient number
   onWrite1 (e) {
     this.setState({
-      patientNumber: 1*e.target.value,
+      patientName: e.target.value,
     });
   };
   //for logout button
@@ -141,13 +142,13 @@ class Home extends React.Component {
   };
   //for retrieve one patient
   retrieveOne(){
-    console.log('you try to retrieve one patient', typeof this.state.patientNumber);
+    console.log('you try to retrieve one patient', typeof this.state.patientName);
     const that=this
     //ajax request to logout
     $.ajax({
       type: 'GET',
       url: '/patient',
-      data:{number:`${that.state.patientNumber}`},
+      data:{number:`${that.state.patientName}`},
       //when success do this
       success: function (res) {
         console.log('Sucess retrieve patient have number: ',res[0].number);
@@ -191,10 +192,10 @@ class Home extends React.Component {
   render () {
     return (
         <div1>
-          <h2 style={header1}>Retrieve data for patient  by his number</h2>
+          <h2 style={header1}>Retrieve data for patient  by his Name</h2>
           <div2 className='row' style={{marginLeft:'auto',marginRight: 'auto'}}>
             <h3 className='col-xs-4 col-xs-offset-1' style={header3}>Get all info for this patient:</h3>
-            <input className='col-xs-1 col-xs-offset-1' value={this.state.patientNumber} type='number' onChange={this.onWrite1.bind(this)} placeholder="Patient number" style={input3}></input>
+            <input className='col-xs-1 col-xs-offset-1' value={this.state.patientName} type='text' onChange={this.onWrite1.bind(this)} placeholder="Patient Name" style={input3}></input>
             <button className='col-xs-2 col-xs-offset-1' onClick={this.retrieveOne.bind(this)} style={button3}>Show the data now</button>
           </div2>
           <div3>
@@ -238,7 +239,15 @@ class Home extends React.Component {
             </table>
           </div3>
           <div4 className='row'> 
-            <button onClick={this.newPatient.bind(this)} style={button2}>Create New Patient</button>
+             <div  style = {{marginRight: 'auto', marginLeft: 'auto', marginTop: '10px', width:" 600px"}}className="container">
+          <div className = 'center'>
+          <div className="btn-group" role="group" aria-label="Basic example">
+            <button  style={button2} className="btn btn-secondary"onClick={this.newPatient.bind(this)} >Create New Patient</button>
+            <button  style={button2} className="btn btn-secondary" style={button2}>Update Patient Info</button>
+            <button  style={button2} className="btn btn-secondary" style={button2}>Delete Patient Info</button>
+            </div> 
+          </div>
+          </div>
              </div4>
              <div>
               <button id="hidden" onClick={this.toggle.bind(this)} style={button2}>Add appointments</button> 
@@ -281,7 +290,7 @@ class Home extends React.Component {
                 
              </div>
              <button onClick={this.logout.bind(this)} style={button1}>Logout</button>
-         
+        
         </div1>
     )
   }
