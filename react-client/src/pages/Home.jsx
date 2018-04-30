@@ -182,6 +182,12 @@ class Home extends React.Component {
     $('.allergies').html(data.allergies);
     $('.description').html(data.description);    
   };
+  toggle(){
+     $("#hidden").click(function(){
+        $("#hi").toggle();
+
+    });
+  }
   render () {
     return (
         <div1>
@@ -233,8 +239,49 @@ class Home extends React.Component {
           </div3>
           <div4 className='row'> 
             <button onClick={this.newPatient.bind(this)} style={button2}>Create New Patient</button>
-            <button onClick={this.logout.bind(this)} style={button1}>Logout</button>
-          </div4>
+             </div4>
+             <div>
+              <button id="hidden" onClick={this.toggle.bind(this)} style={button2}>Add appointments</button> 
+             <center>
+             <div style={{margin:'auto',display:"none"}} id="hi">
+                
+    Date:
+    <input type="text" name="name" />
+    Patient Name:
+    <input type="text" name="name" />
+     Situation:
+    <input type="text" name="name" />
+    Gender:
+    <input type="text" name="name" />
+            
+             </div>
+
+             </center>
+                <div>
+                 <table style={{width:'80%',marginLeft:'auto',marginRight: 'auto',marginTop:'20px'}}>
+              <tr>
+                <th style={table}>Date</th>
+                <th style={table}>Patient Name</th> 
+                <th style={table}>Situation</th>
+                <th style={table}>Gender</th>
+              </tr>
+              <tr>
+                <td className='number' value='tttttt' style={table2}>2012</td>
+                <td className='firstName' style={table2}>asdasd</td>
+                <td className='lastName' style={table2}>asdas</td>
+                <td className='gender' style={table2}>asdasd</td>
+              </tr>  <tr>
+                <td className='number' value='tttttt' style={table2}>2012</td>
+                <td className='firstName' style={table2}>asdasd</td>
+                <td className='lastName' style={table2}>asdas</td>
+                <td className='gender' style={table2}>asdasd</td>
+              </tr>
+              </table>
+                </div>
+                
+             </div>
+             <button onClick={this.logout.bind(this)} style={button1}>Logout</button>
+         
         </div1>
     )
   }
