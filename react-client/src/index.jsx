@@ -84,7 +84,7 @@ class App2 extends React.Component {
           <div style={div2}>
             <div style={header1}>
               <NavLink to='/login' exact strict style={{textDecoration:'none',header2}} > 
-                <img  src="https://pacificmedicalacls.com/images/pluslogo.png" alt="logo" height="40" width="40"/>
+                
                 <h style={header2}>Medical Record</h>
               </NavLink>
               <div style={div3} align="right">
