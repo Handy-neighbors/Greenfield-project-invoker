@@ -12,6 +12,14 @@ router.use(bodyParser.urlencoded({extended : true}))
 
 //**routes and handling requests.**//
 
+router.route('/appointments')
+.get(function(req, res){
+  console.log(req.body)
+  //I'm expecting an id or username and i will send back the array of appointments for this patient
+  //
+  //res.send()
+})
+
 router.route('/login')
 .get(function(req,res){
   res.sendFile(path.join(__dirname, '../react-client/dist/index.html'));
