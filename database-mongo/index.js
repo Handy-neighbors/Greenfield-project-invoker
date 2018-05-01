@@ -31,8 +31,7 @@ var patientSchema = mongoose.Schema({
   currentlly_Medications:String,
   genetic_Diseases:String,
   allergies:String,
-  description: String,
-  appointment:Array
+  description: String
 });
 
 //compiling our schema into a Model(class)
@@ -65,7 +64,8 @@ var userSchema = mongoose.Schema({
   userName:{type:String,unique:true},
   password:String,
   firstName:String,
-  lastName:String
+  lastName:String,
+  appoientment:Array
 
 });
 
