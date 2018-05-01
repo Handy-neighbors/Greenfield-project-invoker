@@ -40,7 +40,7 @@ exports.updateOne = function (req, res) {
 			patient.currentlly_Medications=req.body.currentlly_Medications;
 		  patient.genetic_Diseases=req.body.genetic_Diseases;
 			patient.allergies=req.body.allergies;
-			patient.description=req.body.description;
+		
 
 			patient.save(function(err,patient){
 				if(err){
@@ -87,7 +87,7 @@ exports.retrieveOne=function(req,res){
   //req.body.number=JSON.parse(req.body.number);
   //console.log('HERE',req.body);
   //console.log(req)
-  Patient.find({number:number},function(err,patient){
+  Patient.findOne({firstName:firstName},function(err,patient){
     if(err){
     	console.log(err)
     	res.send(500)
