@@ -31,8 +31,7 @@ var patientSchema = mongoose.Schema({
   currentlly_Medications:String,
   genetic_Diseases:String,
   allergies:String,
-  description: String,
-  appointment:Array
+  description: String
 });
 
 //compiling our schema into a Model(class)
