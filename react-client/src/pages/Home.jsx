@@ -106,10 +106,10 @@ class Home extends React.Component {
       //the data get from retrieve
       data:{},
       id:0,
-      Date:'',
-      PatientName:'',
-      Situation:'',
-      Gender:''
+      date:'',
+      patientName:'',
+      situation:'',
+      gender:''
     };
     this.handleChanges = this.handleChanges.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -214,10 +214,10 @@ class Home extends React.Component {
       data: {
         userName: this.props.user,
         id: this.state.id,
-        Date: this.state.Date,
-        PatientName:this.state.PatientName,
-        Situation: this.state.Situation,
-        Gender:this.state.Gender
+        date: this.state.date,
+        patientName:this.state.patientName,
+        situation: this.state.situation,
+        gender:this.state.gender
       }, 
       success: (data) => {
         console.log(data.appointments)
@@ -303,19 +303,19 @@ class Home extends React.Component {
           </div>
           <div>
             <label >Date:</label>
-            <input type="Date" placeholder="Enter service" name="Date" value={this.state.Date} onChange={this.handleChanges}/>
+            <input type="Date" placeholder="Enter service" name="date" value={this.state.date} onChange={this.handleChanges}/>
           </div>
           <div>
             <label >PatientName</label>
-            <input type="text" placeholder="Enter Patient Name" name="PatientName" value={this.state.PatientName} onChange={this.handleChanges}/>
+            <input type="text" placeholder="Enter Patient Name" name="patientName" value={this.state.patientName} onChange={this.handleChanges}/>
           </div>
           <div>
             <label >Situation</label>
-            <input type="text" placeholder="Enter Situation" name="Situation" value={this.state.Situation} onChange={this.handleChanges}/>
+            <input type="text" placeholder="Enter Situation" name="situation" value={this.state.situation} onChange={this.handleChanges}/>
           </div>
           <div>
             <label >Gender:</label>
-            <input type="text" placeholder="Enter Gender" name="Gender" value={this.state.Gender} onChange={this.handleChanges}/>
+            <input type="text" placeholder="Enter Gender" name="gender" value={this.state.gender} onChange={this.handleChanges}/>
           </div>
         <input  type="submit" value="Submit" style={button2}/>
             </form>
