@@ -2,6 +2,9 @@
 import React from 'react';
 //to work in ajax
 import $ from 'jquery';
+
+import PatientList from './PatientList.jsx';
+
 //the style for the main header
 const header1={
   color:'black',
@@ -95,6 +98,19 @@ const button2={
   borderRadius: '10px',
   fontFamily: 'Lobster',
 };
+const button4={
+  padding:'5px',
+  //this three to make it center
+  display: 'block',
+  marginLeft: '850px',
+  backgroundColor: '#123456',
+  color: 'white',
+  border: '2px solid #123456',
+  marginTop:'0px',
+  fontSize:'20px',
+  borderRadius: '10px',
+  fontFamily: 'Lobster',
+};
 //the page home what inside render
 class Home extends React.Component {
   constructor(){
@@ -109,7 +125,8 @@ class Home extends React.Component {
       date:'',
       patientName:'',
       situation:'',
-      gender:''
+      gender:'',
+      appointments:[]
     };
     this.handleChanges = this.handleChanges.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -212,7 +229,6 @@ class Home extends React.Component {
       type : 'POST',
       url: '/appointments',
       data: {
-        userName: this.props.user,
         id: this.state.id,
         date: this.state.date,
         patientName:this.state.patientName,
@@ -293,61 +309,47 @@ class Home extends React.Component {
              </div4>
              <div>
              <div>
-              <button id="hidden" onClick={this.toggle.bind(this)} style={button2}>Add appointments</button> 
+              <button id="hidden" onClick={this.toggle.bind(this)} style={button4}>Add appointments</button> 
              <center>
-             <div style={{margin:'auto',display:"none"}} id="hi">
+             <div style={{marginRight:'70px',display:"none"}} id="hi">
              <form onSubmit={this.handleSubmit}>  
             <div >
-            <label >Id:</label>
-            <input type="Number" placeholder="Enter id" name="id" value={this.state.id} onChange={this.handleChanges}/>
+           
+          <p style={{fontSize:'20px', textAlign:'center',fontWeight: 'bold'}}>ID:</p><input type="Number" placeholder="Enter id" style={input3} name="id" value={this.state.id} onChange={this.handleChanges}/>
           </div>
           <div>
-            <label >Date:</label>
-            <input type="Date" placeholder="Enter service" name="date" value={this.state.date} onChange={this.handleChanges}/>
+            <p style={{fontSize:'20px', textAlign:'center',fontWeight: 'bold'}}>Date:</p>
+            <input type="Date" placeholder="Enter service" style={input3} name="date" value={this.state.date} onChange={this.handleChanges}/>
           </div>
           <div>
-            <label >PatientName</label>
-            <input type="text" placeholder="Enter Patient Name" name="patientName" value={this.state.patientName} onChange={this.handleChanges}/>
+           <p style={{fontSize:'20px', textAlign:'center',fontWeight: 'bold'}}>Patient Name:</p>
+            <input type="text" placeholder="Enter Patient Name" style={input3} name="patientName" value={this.state.patientName} onChange={this.handleChanges}/>
           </div>
           <div>
-            <label >Situation</label>
-            <input type="text" placeholder="Enter Situation" name="situation" value={this.state.situation} onChange={this.handleChanges}/>
+           <p style={{fontSize:'20px', textAlign:'center',fontWeight: 'bold'}}>Situation:</p>
+            <input type="text" placeholder="Enter Situation" style={input3} name="situation" value={this.state.situation} onChange={this.handleChanges}/>
           </div>
           <div>
-            <label >Gender:</label>
-            <input type="text" placeholder="Enter Gender" name="gender" value={this.state.gender} onChange={this.handleChanges}/>
+            <p style={{fontSize:'20px', textAlign:'center',fontWeight: 'bold'}}>Gender:</p>
+            <input type="text" placeholder="Enter Gender" style={input3} name="gender" value={this.state.gender} onChange={this.handleChanges}/>
           </div>
-        <input  type="submit" value="Submit" style={button2}/>
+          <p></p>
+        <input  type="submit" value="Submit" style={button3}/>
             </form>
              </div>
             
-             </center>
-              </div>
-                <div>
-                 <table style={{width:'80%',marginLeft:'auto',marginRight: 'auto',marginTop:'20px'}}>
-              <tr>
-                <th style={table}>Date</th>
-                <th style={table}>Patient Name</th> 
-                <th style={table}>Situation</th>
-                <th style={table}>Gender</th>
-              </tr>
-              <tr>
-                <td className='number' value='tttttt' style={table2}>2012</td>
-                <td className='firstName' style={table2}>asdasd</td>
-                <td className='lastName' style={table2}>asdas</td>
-                <td className='gender' style={table2}>asdasd</td>
-              </tr>  <tr>
-                <td className='number' value='tttttt' style={table2}>2012</td>
-                <td className='firstName' style={table2}>asdasd</td>
-                <td className='lastName' style={table2}>asdas</td>
-                <td className='gender' style={table2}>asdasd</td>
-              </tr>
-              </table>
-                </div>
-                
-             </div>
-             <button onClick={this.logout.bind(this)} style={button1}>Logout</button>
+         </center>
+          </div>
+        <div style={{margin: '80px'}}>
         
+        
+        <PatientList appointments={this.state.appointments} />
+        
+       
+        </div>
+           </div>
+           
+             <button onClick={this.logout.bind(this)} style={button1}>Logout</button>
         </div1>
     )
   }
