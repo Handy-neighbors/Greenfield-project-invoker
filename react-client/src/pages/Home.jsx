@@ -111,7 +111,7 @@ class Home extends React.Component {
       Situation:'',
       Gender:''
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChanges = this.handleChanges.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   //when change  ... change the
