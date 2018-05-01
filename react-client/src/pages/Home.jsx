@@ -105,7 +105,14 @@ class Home extends React.Component {
       patientName:'',
       //the data get from retrieve
       data:{},
+      id:0,
+      Date:'',
+      PatientName:'',
+      Situation:'',
+      Gender:''
     };
+    this.handleChanges = this.handleChanges.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   //when change  ... change the
   //patient number
@@ -184,11 +191,46 @@ class Home extends React.Component {
     $('.description').html(data.description);    
   };
   toggle(){
-     $("#hidden").click(function(){
+     $("#hidden").on('click',function(){
         $("#hi").toggle();
 
     });
+   
+  } 
+
+  handleChanges(event){
+      var name = event.target.name
+      var value = event.target.value
+      var obj = {}
+      obj[name] = value
+      this.setState(obj)
+      console.log(this.state[name])
   }
+
+  handleSubmit(event) {
+    $.ajax({
+      type : 'POST',
+      url: '/appointments',
+      data: {
+        userName: this.props.user,
+        id: this.state.id,
+        Date: this.state.Date,
+        PatientName:this.state.PatientName,
+        Situation: this.state.Situation,
+        Gender:this.state.Gender
+      }, 
+      success: (data) => {
+        console.log(data.appointments)
+        this.props.setAppointments(data.appointments)
+
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
+    event.preventDefault();
+  } 
+
   render () {
     return (
         <div1>
@@ -250,22 +292,37 @@ class Home extends React.Component {
           </div>
              </div4>
              <div>
+             <div>
               <button id="hidden" onClick={this.toggle.bind(this)} style={button2}>Add appointments</button> 
              <center>
              <div style={{margin:'auto',display:"none"}} id="hi">
-                
-    Date:
-    <input type="text" name="name" />
-    Patient Name:
-    <input type="text" name="name" />
-     Situation:
-    <input type="text" name="name" />
-    Gender:
-    <input type="text" name="name" />
-            
+             <form onSubmit={this.handleSubmit}>  
+            <div >
+            <label >Id:</label>
+            <input type="Number" placeholder="Enter id" name="id" value={this.state.id} onChange={this.handleChanges}/>
+          </div>
+          <div>
+            <label >Date:</label>
+            <input type="Date" placeholder="Enter service" name="Date" value={this.state.Date} onChange={this.handleChanges}/>
+          </div>
+          <div>
+            <label >PatientName</label>
+            <input type="text" placeholder="Enter Patient Name" name="PatientName" value={this.state.PatientName} onChange={this.handleChanges}/>
+          </div>
+          <div>
+            <label >Situation</label>
+            <input type="text" placeholder="Enter Situation" name="Situation" value={this.state.Situation} onChange={this.handleChanges}/>
+          </div>
+          <div>
+            <label >Gender:</label>
+            <input type="text" placeholder="Enter Gender" name="Gender" value={this.state.Gender} onChange={this.handleChanges}/>
+          </div>
+        <input  type="submit" value="Submit" style={button2}/>
+            </form>
              </div>
-
+            
              </center>
+              </div>
                 <div>
                  <table style={{width:'80%',marginLeft:'auto',marginRight: 'auto',marginTop:'20px'}}>
               <tr>
