@@ -81,7 +81,7 @@ exports.delete=function(req,res){
              }
   })
 };
-
+//
 //4.return all info for one patient
 exports.retrieveOne=function(req,res){
   //try to solve problem cant go to correct number jozaa
