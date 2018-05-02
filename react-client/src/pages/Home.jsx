@@ -258,7 +258,9 @@ class Home extends React.Component {
       }, 
       success: (data) => {
         console.log(data.appointments)
-        this.props.setAppointments(data.appointments)
+        this.setState({
+          appointments:data
+        })
 
       },
       error: (err) => {
