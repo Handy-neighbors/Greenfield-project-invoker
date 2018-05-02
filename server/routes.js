@@ -85,7 +85,7 @@ router.route('/logout')
 //homepage route with checkUser middleware to check for a user key in the session object.
 router.route('/')
 .get(utils.checkUser,function(req,res){
-  //console.log(req.session)
+  // console.log(req.session)
   res.sendFile(path.join(__dirname, '../react-client/dist/index.html'));
 })
 //go to newpatient page to can create new patient
