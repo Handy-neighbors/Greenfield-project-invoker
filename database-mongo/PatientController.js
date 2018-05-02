@@ -62,13 +62,13 @@ exports.updateOne = function (req, res) {
 
 //3.delete one patient
 exports.delete=function(req,res){
-  Patient.find({number:req.body.number},function(err,patient){
+  Patient.find({firstName:req.body.name},function(err,patient){
   	if(err){
   		console.log(err)
   		res.send(500);
              }
              else{
-             	patient.remove(function(err,patient){
+             	Patient.remove(function(err,patient){
              		if(err){
              			console.log(err);
              			res.send(err);
