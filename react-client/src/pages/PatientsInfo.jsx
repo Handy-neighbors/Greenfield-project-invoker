@@ -21,7 +21,19 @@ const table={
     backgroundColor: 'white',
 }
 class PatientsInfo extends React.Component{
-   
+        onDelete(){
+            $.ajax({
+                type:"DELETE",
+                url:"/appointments",
+                data:{id:this.props.appointment.id},
+                success: function(data){
+                    console.log(data)
+                },
+                error: function(err){
+                    console.log(err)
+                }
+            })
+        }
         render(){
             return(
          
@@ -32,6 +44,7 @@ class PatientsInfo extends React.Component{
                 <td style={table2}>{this.props.appointment.patientName}</td>
                 <td style={table2}>{this.props.appointment.situation}</td>
                 <td style={table2}>{this.props.appointment.gender}</td>
+                <td><button onClick={this.onDelete}>Delete</button></td>
                </tr>
                 
                 )
