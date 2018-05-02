@@ -256,6 +256,22 @@ class Home extends React.Component {
       this.setState(obj)
       console.log(this.state[name])
   }
+  componentDidMount(){
+    $.ajax({
+      type : 'GET',
+      url: '/appointments',
+      success: (data) => {
+        console.log(data.appointments)
+        this.setState({
+          appointments:data
+        })
+
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
+  }
 
   handleSubmit(event) {
     $.ajax({
@@ -336,7 +352,7 @@ class Home extends React.Component {
           <div className = 'center'>
           <div className="btn-group" role="group" aria-label="Basic example">
             <button  style={button2} className="btn btn-secondary"onClick={this.newPatient.bind(this)} >Create New Patient</button>
-      <div className="dropdown">
+        <div className="dropdown">
           <button className="dropbtn" style = {button2}>Edit Patient Info</button>
             <div className="dropdown-content">
             <input onChange={this.onChange.bind(this)} style={{width:'100%'}} type="text" placeholder="New Entry Here"></input>
@@ -356,7 +372,7 @@ class Home extends React.Component {
               <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="allergies">Allergies</button>
               <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="description">Description</button>
             </div>  
-      </div>
+        </div>
               <button onClick={this.delete.bind(this)} style={button2} className="btn btn-secondary" style={button2}>Delete Patient Info</button>
             </div> 
           </div>
