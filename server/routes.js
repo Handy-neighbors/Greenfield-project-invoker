@@ -20,7 +20,7 @@ router.route('/appointments')
     //data.appoientment.push(obj)
     arr = data.appoientment
     arr.push(obj)
-     console.log(arr)
+     //console.log(arr)
     //console.log(data.appoientment)
     //User.save(err)
     User.findOneAndUpdate({userName: req.session.username}, 
@@ -35,6 +35,34 @@ router.route('/appointments')
   User.findOne({userName: req.session.username}, 'appoientment', function(err, data){
     res.send(data.appoientment)
   })
+})
+.delete(utils.checkUser,function(req, res){
+  var id = req.body.id
+  
+  var arr = []
+  User.findOne({userName: req.session.username}, 'userName appoientment', function(err, data){
+    
+    //data.appoientment.push(obj)
+    arr = data.appoientment
+    data.appoientment.forEach(function(appo, i) {
+      //console.log(i)
+      if(data.appoientment[i].id === id){
+        //console.log(data.appoientment[i].id)
+        arr.splice(i, 1)
+        //console.log(arr)
+      }
+    })
+
+    
+    //console.log(data.appoientment)
+    //User.save(err)
+    User.findOneAndUpdate({userName: req.session.username}, 
+                  { appoientment: arr }, function(err, mod){
+                    res.send(arr)
+                  })
+    
+  })
+
 })
 
 router.route('/login')

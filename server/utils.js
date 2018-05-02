@@ -45,7 +45,7 @@ exports.checkUser=function(req,res,next){
     console.log('You Are not logged in');
     res.send('<script>alert("Sorry DR you are not logged in please login first to can access this page")</script>'+'<script>window.location.href= window.location.origin+"/login" </script>')
   }else{
-    console.log('next');
+    
     next()
   }
 }
