@@ -38,22 +38,30 @@ router.route('/appointments')
 })
 .delete(utils.checkUser,function(req, res){
   var id = req.body.id
-  console.log(id)
+  
   var arr = []
-  // User.findOne({userName: req.session.username}, 'userName appoientment', function(err, data){
-   
-  //   //data.appoientment.push(obj)
-  //   arr = data.appoientment
-  //   arr.push(obj)
-  //    //console.log(arr)
-  //   //console.log(data.appoientment)
-  //   //User.save(err)
-  //   User.findOneAndUpdate({userName: req.session.username}, 
-  //                 { appoientment: arr }, function(err, mod){
-  //                   res.send(arr)
-  //                 })
+  User.findOne({userName: req.session.username}, 'userName appoientment', function(err, data){
     
-  // })
+    //data.appoientment.push(obj)
+    arr = data.appoientment
+    data.appoientment.forEach(function(appo, i) {
+      //console.log(i)
+      if(data.appoientment[i].id === id){
+        //console.log(data.appoientment[i].id)
+        arr.splice(i, 1)
+        //console.log(arr)
+      }
+    })
+
+    
+    //console.log(data.appoientment)
+    //User.save(err)
+    User.findOneAndUpdate({userName: req.session.username}, 
+                  { appoientment: arr }, function(err, mod){
+                    res.send(arr)
+                  })
+    
+  })
 
 })
 
