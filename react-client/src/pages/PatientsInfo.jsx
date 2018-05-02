@@ -22,10 +22,11 @@ const table={
 }
 class PatientsInfo extends React.Component{
         onDelete(){
+           var that=this;
             $.ajax({
                 type:"DELETE",
                 url:"/appointments",
-                data:{id:this.props.appointment.id},
+                data:{id:that.props.appointment.id},
                 success: function(data){
                     console.log(data)
                 },
@@ -44,7 +45,7 @@ class PatientsInfo extends React.Component{
                 <td style={table2}>{this.props.appointment.patientName}</td>
                 <td style={table2}>{this.props.appointment.situation}</td>
                 <td style={table2}>{this.props.appointment.gender}</td>
-                <td><button onClick={this.onDelete}>Delete</button></td>
+                <td><button onClick={this.onDelete.bind(this)}>Delete</button></td>
                </tr>
                 
                 )
