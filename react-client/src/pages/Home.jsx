@@ -118,7 +118,9 @@ class Home extends React.Component {
     //all the data save before sent in state
     this.state={
       loggedIn:true,
-      patientName:'',
+      patientName:"",
+      change:"",
+      newVal:"",
       //the data get from retrieve
       data:{},
       id:0,
@@ -138,11 +140,30 @@ class Home extends React.Component {
       patientName: e.target.value,
     });
   };
+    onChange (e) {
+    this.setState({
+      newVal: e.target.value
+    });
+  };
+  onClick(e){
+    var that = this
+    that.setState({
+          change:e.target.id
+        },()=> console.log(that.state.change,that.state.newVal))
+    $.ajax({
+      url: '/update',
+      type: 'POST',
+      data: { changes:that.state.change,
+              newVal : that.state.newVal
+      }
+})
+
+  };
   //for logout button
   logout(){
     console.log('you try to logoutDR');
     const that=this
-    //ajax request to logout
+    // ajax request to logout
     $.ajax({
       type: 'GET',
       url: '/logout',
@@ -301,7 +322,27 @@ class Home extends React.Component {
           <div className = 'center'>
           <div className="btn-group" role="group" aria-label="Basic example">
             <button  style={button2} className="btn btn-secondary"onClick={this.newPatient.bind(this)} >Create New Patient</button>
-            <button  style={button2} className="btn btn-secondary" style={button2}>Update Patient Info</button>
+      <div className="dropdown">
+          <button className="dropbtn" style = {button2}>Edit Patient Info</button>
+            <div className="dropdown-content">
+            <input onChange={this.onChange.bind(this)} style={{width:'100%'}} type="text" placeholder="New Entry Here"></input>
+              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="number">Number</button>
+              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="firstName">First Name</button>
+              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="lastName">Last Name</button>
+              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="gender">Gender</button>
+              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="age">Age</button>
+              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="phone">Phone</button>
+              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="conditions">Conditions</button>
+              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="pastDiseases">Past Diseases
+              </button>
+              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="currMedications">Curr. Medications
+              </button>
+              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="geneticDisease">Genetic Diseases
+              </button>
+              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="allergies">Allergies</button>
+              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="description">Description</button>
+            </div>
+      </div>
             <button  style={button2} className="btn btn-secondary" style={button2}>Delete Patient Info</button>
             </div> 
           </div>
