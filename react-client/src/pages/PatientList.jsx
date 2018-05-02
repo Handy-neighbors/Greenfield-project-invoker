@@ -26,7 +26,7 @@ class PatientList extends React.Component{
                 <th style={table}>Situation</th>
                 <th style={table}>Gender</th>
             </tr>
-                    {this.props.appointments.map((appointment)=><PatientsInfo appointment={appointment} />)} 
+                    {this.props.appointments.map((appointment)=><PatientsInfo appointment={appointment} deleteArray={this.props.deleteArray}/>)} 
                      </table>
 
                 </div>

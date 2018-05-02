@@ -133,6 +133,7 @@ class Home extends React.Component {
     };
     this.handleChanges = this.handleChanges.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.deleteArray=this.deleteArray.bind(this);
   }
   //when change  ... change the
   //patient number
@@ -273,6 +274,13 @@ class Home extends React.Component {
     });
   }
 
+  deleteArray(array){
+
+    this.setState({
+      appointments:array
+    })
+  }
+
   handleSubmit(event) {
     $.ajax({
       type : 'POST',
@@ -285,7 +293,7 @@ class Home extends React.Component {
         gender:this.state.gender
       }, 
       success: (data) => {
-        console.log(data.appointments)
+        console.log(data)
         this.setState({
           appointments:data
         })
@@ -414,7 +422,7 @@ class Home extends React.Component {
         <div style={{margin: '80px'}}>
         
         
-        <PatientList appointments={this.state.appointments} />
+        <PatientList appointments={this.state.appointments} deleteArray={this.deleteArray}/>
         
        
         </div>
