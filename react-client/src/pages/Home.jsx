@@ -121,6 +121,7 @@ class Home extends React.Component {
       patientName:"",
       change:"",
       newVal:"",
+      name:"",
       //the data get from retrieve
       data:{},
       id:0,
@@ -159,6 +160,17 @@ class Home extends React.Component {
 })
 
   };
+  delete(){
+    var that = this
+    $.ajax({
+      url: '/patient',
+      type: 'DELETE',
+      data: {name:that.state.name },
+      success:function(){
+        window.location.href= window.location.origin+'/'
+      }
+    })
+  }
   //for logout button
   logout(){
     console.log('you try to logoutDR');
@@ -343,9 +355,9 @@ class Home extends React.Component {
               </button>
               <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="allergies">Allergies</button>
               <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="description">Description</button>
-            </div>
+            </div>  
       </div>
-            <button  style={button2} className="btn btn-secondary" style={button2}>Delete Patient Info</button>
+              <button onClick={this.delete.bind(this)} style={button2} className="btn btn-secondary" style={button2}>Delete Patient Info</button>
             </div> 
           </div>
           </div>
