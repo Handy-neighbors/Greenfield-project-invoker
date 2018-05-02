@@ -13,11 +13,24 @@ router.use(bodyParser.urlencoded({extended : true}))
 //**routes and handling requests.**//
 
 router.route('/appointments')
-.get(function(req, res){
-  console.log(req.body)
-  //I'm expecting an id or username and i will send back the array of appointments for this patient
-  //
-  //res.send()
+.post(utils.checkUser,function(req, res){
+  var obj = req.body
+  console.log(req.session.username)
+
+  User.findOne({username: req.session.username}, 'username appointment', function(err, data){
+    console.log(data)
+    // data.appointment.push(obj)
+    // console.log(data.appointment)
+    // User.save()
+    
+  })
+
+
+
+
+  //I'm expecting an id or username and i will push a new appointment
+  //and send back all appointments
+  res.send('')
 })
 
 router.route('/login')
@@ -25,26 +38,8 @@ router.route('/login')
   res.sendFile(path.join(__dirname, '../react-client/dist/index.html'));
 })
 
-.post(function(req,res){
-  var userName=req.body.userName;
-  var password=req.body.password;
-  //searching for user by the username and comparing passwords.
-  User.findOne({userName:userName},function(err,user){
-    if(!user){
-      console.log('This username does not exist in database ..!');
-      res.send(`Sorry DR. this username does not exist in database please create new user now // if you have account but insert wrong username please go to login page again and insert your correct username`)
-    }else{
-    bcrypt.compare(password,user.password,function(err,match){
-          if(match){
-            console.log('Successful login');
-            utils.createSession(req,res,user,userName);
-          }else{
-            console.log('Wrong password ..!');
-            res.send(`Sorry DR.${userName} this password is wrong please insert the username again and your correct password`);
-      }
-    })}
-  })
-});
+.post(utils.logIn)
+
 
 router.route('/signup')
 .get(function(req,res){
@@ -91,6 +86,7 @@ router.route('/logout')
 //homepage route with checkUser middleware to check for a user key in the session object.
 router.route('/')
 .get(utils.checkUser,function(req,res){
+  //console.log(req.session)
   res.sendFile(path.join(__dirname, '../react-client/dist/index.html'));
 })
 //go to newpatient page to can create new patient
