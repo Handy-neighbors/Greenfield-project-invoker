@@ -196,8 +196,8 @@ class Home extends React.Component {
       data:{number:`${that.state.patientName}`},
       //when success do this
       success: function (res) {
-        console.log('Sucess retrieve patient have number: ',res[0].number);
-        alert('Sucess retrieve patient have number: '+res[0].number);
+        console.log('Sucess retrieve patient have name: ',res[0].firstName);
+        alert('Sucess retrieve patient have name: '+res[0].firstName);
         that.setState({data:res});
         //console.log(that.state.data);
         that.renderData()
