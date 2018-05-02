@@ -46,7 +46,7 @@ class PatientsInfo extends React.Component{
                 <td style={table2}>{this.props.appointment.patientName}</td>
                 <td style={table2}>{this.props.appointment.situation}</td>
                 <td style={table2}>{this.props.appointment.gender}</td>
-                <td><button onClick={this.onDelete.bind(this)} >Delete</button></td>
+                <td><button className="btn btn-danger" onClick={this.onDelete.bind(this)} >Delete</button></td>
                </tr>
                 
                 )
