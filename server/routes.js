@@ -31,6 +31,11 @@ router.route('/appointments')
   })
 
 })
+.get(utils.checkUser, function(req, res){
+  User.findOne({userName: req.session.username}, 'appoientment', function(err, data){
+    res.send(data.appoientment)
+  })
+})
 
 router.route('/login')
 .get(function(req,res){
