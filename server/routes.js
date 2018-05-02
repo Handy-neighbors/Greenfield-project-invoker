@@ -16,12 +16,19 @@ router.route('/appointments')
 .post(utils.checkUser,function(req, res){
   var obj = req.body
   console.log(req.session.username)
-
-  User.findOne({username: req.session.username}, 'username appointment', function(err, data){
-    console.log(data)
-    // data.appointment.push(obj)
-    // console.log(data.appointment)
-    // User.save()
+  var arr = []
+  User.findOne({userName: req.session.username}, 'userName appoientment', function(err, data){
+   
+    //data.appoientment.push(obj)
+    arr = data.appoientment
+    arr.push(obj)
+     console.log(arr)
+    //console.log(data.appoientment)
+    //User.save(err)
+    User.findOneAndUpdate({userName: req.session.username}, 
+                  { appoientment: arr }, function(err, mod){
+                    res.send(arr)
+                  })
     
   })
 
@@ -30,7 +37,7 @@ router.route('/appointments')
 
   //I'm expecting an id or username and i will push a new appointment
   //and send back all appointments
-  res.send('')
+ 
 })
 
 router.route('/login')
