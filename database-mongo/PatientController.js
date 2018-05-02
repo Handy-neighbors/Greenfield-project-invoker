@@ -23,24 +23,29 @@ exports.createOne = function (req, res) {
 
 //2.update specific info for one patient
 exports.updateOne = function (req, res) {
-	Patient.find({number:req.body.number},function(err,patient){
+	Patient.findOneAndUpdate({firstName:req.body.number},{$set:{
+   //  "firstName":req.body.firstName,
+   //  "lastName":req.body.lastName,
+   //   "gender":req.body.gender,
+   //    "age":req.body.age,
+   //   "phone":req.body.phone,
+   //    "conditions":req.body.conditions,
+   //    "past_Diseases":req.body.past_Diseases,
+   // "currentlly_Medications":req.body.currentlly_Medications,
+   //   " genetic_Diseases":req.body.genetic_Diseases,
+   //    "allergies":req.body.allergies
+
+
+  },function(err,patient){
 		if(err){
 			console.log(err)
 			res.send(500);
 		}
 		else{
-			patient.number=req.body.number;
-			patient.firstName=req.body.firstName;
-			patient.lastName=req.body.lastName;
-			patient.gender=req.body.gender;
-			patient.age=req.body.age;
-			patient.phone=req.body.phone;
-			patient.conditions=req.body.conditions;
-			patient.past_Diseases=req.body.past_Diseases;
-			patient.currentlly_Medications=req.body.currentlly_Medications;
-		  patient.genetic_Diseases=req.body.genetic_Diseases;
-			patient.allergies=req.body.allergies;
-		
+      console.log("data for patient is ubdated");
+      res.send(patient);
+    }
+			
 
 			patient.save(function(err,patient){
 				if(err){
@@ -82,12 +87,13 @@ exports.retrieveOne=function(req,res){
   //try to solve problem cant go to correct number jozaa
   //take the number sent in the GET request
   console.log(req)
+  console.log(req.body.patientName)
   console.log('HEREEEEEEEEEEEE:',req._parsedOriginalUrl.path.split('=')[1]);
   var number=req._parsedOriginalUrl.path.split('=')[1]
   //req.body.number=JSON.parse(req.body.number);
   //console.log('HERE',req.body);
   //console.log(req)
-  Patient.findOne({firstName:firstName},function(err,patient){
+  Patient.find({firstName:number},function(err,patient){
     if(err){
     	console.log(err)
     	res.send(500)
@@ -112,3 +118,23 @@ exports.retrieveAll=function(req,res){
   	}
   })
 };
+
+
+
+
+
+
+
+
+// patient.number=req.body.number;
+//       patient.firstName=req.body.firstName;
+//       patient.lastName=req.body.lastName;
+//       patient.gender=req.body.gender;
+//       patient.age=req.body.age;
+//       patient.phone=req.body.phone;
+//       patient.conditions=req.body.conditions;
+//       patient.past_Diseases=req.body.past_Diseases;
+//       patient.currentlly_Medications=req.body.currentlly_Medications;
+//       patient.genetic_Diseases=req.body.genetic_Diseases;
+//       patient.allergies=req.body.allergies;
+
