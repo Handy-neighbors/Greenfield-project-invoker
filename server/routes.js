@@ -10,7 +10,27 @@ var User=mongoose.model('User')
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({extended : true}))
 
+router.route('/appointments')
+.post(utils.checkUser,function(req, res){
+  var obj = req.body
+  console.log(req.session.username)
+  var arr = []
+  User.findOne({userName: req.session.username}, 'userName appoientment', function(err, data){
+   
+    //data.appoientment.push(obj)
+    arr = data.appoientment
+    arr.push(obj)
+     console.log(arr)
+    //console.log(data.appoientment)
+    //User.save(err)
+    User.findOneAndUpdate({userName: req.session.username}, 
+                  { appoientment: arr }, function(err, mod){
+                    res.send(arr)
+                  })
+    
+  })
 
+})
 
 router.route('/login')
 .get(function(req,res){
