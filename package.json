@@ -33,6 +33,7 @@
     "react-bootstrap": "^0.32.1",
     "react-dom": "^15.4.2",
     "react-fontawesome": "^1.6.1",
+    "react-foundation": "^0.9.5",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2"
   }

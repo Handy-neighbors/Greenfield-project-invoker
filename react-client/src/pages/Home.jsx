@@ -1,5 +1,6 @@
 //to work react
 import React from 'react';
+import {Grid, Row, Col} from 'react-bootstrap';
 //to work in ajax
 import $ from 'jquery';
 
@@ -102,7 +103,7 @@ const button4={
   padding:'5px',
   //this three to make it center
   display: 'block',
-  marginLeft: '850px',
+  margin: 'auto',
   backgroundColor: '#123456',
   color: 'white',
   border: '2px solid #123456',
@@ -286,7 +287,7 @@ class Home extends React.Component {
       type : 'POST',
       url: '/appointments',
       data: {
-        id: this.state.id,
+        id:++this.state.id,
         date: this.state.date,
         patientName:this.state.patientName,
         situation: this.state.situation,
@@ -308,7 +309,11 @@ class Home extends React.Component {
 
   render () {
     return (
-        <div1>
+        <div1 className="container">
+        <Row>
+          <Col md="6">
+          
+        
           <h2 style={header1}>Retrieve data for patient  by his Name</h2>
           <div2 className='row' style={{marginLeft:'auto',marginRight: 'auto'}}>
             <h3 className='col-xs-4 col-xs-offset-1' style={header3}>Get all info for this patient:</h3>
@@ -392,10 +397,7 @@ class Home extends React.Component {
              <center>
              <div style={{marginRight:'70px',display:"none"}} id="hi">
              <form onSubmit={this.handleSubmit}>  
-            <div >
            
-          <p style={{fontSize:'20px', textAlign:'center',fontWeight: 'bold'}}>ID:</p><input type="Number" placeholder="Enter id" style={input3} name="id" value={this.state.id} onChange={this.handleChanges}/>
-          </div>
           <div>
             <p style={{fontSize:'20px', textAlign:'center',fontWeight: 'bold'}}>Date:</p>
             <input type="Date" placeholder="Enter service" style={input3} name="date" value={this.state.date} onChange={this.handleChanges}/>
@@ -419,16 +421,19 @@ class Home extends React.Component {
             
          </center>
           </div>
-        <div style={{margin: '80px'}}>
+        
+           </div>
+           
+             <button onClick={this.logout.bind(this)} style={button1}>Logout</button>
+             </Col>
+           <Col md="6"> <div style={{margin: '80px'}}>
         
         
         <PatientList appointments={this.state.appointments} deleteArray={this.deleteArray}/>
         
        
-        </div>
-           </div>
-           
-             <button onClick={this.logout.bind(this)} style={button1}>Logout</button>
+        </div> </Col>
+             </Row>
         </div1>
     )
   }
