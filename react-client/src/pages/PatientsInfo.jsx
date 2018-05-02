@@ -29,6 +29,7 @@ class PatientsInfo extends React.Component{
                 data:{id:that.props.appointment.id},
                 success: function(data){
                     console.log(data)
+                    that.props.deleteArray(data)
                 },
                 error: function(err){
                     console.log(err)
@@ -45,7 +46,7 @@ class PatientsInfo extends React.Component{
                 <td style={table2}>{this.props.appointment.patientName}</td>
                 <td style={table2}>{this.props.appointment.situation}</td>
                 <td style={table2}>{this.props.appointment.gender}</td>
-                <td><button onClick={this.onDelete.bind(this)}>Delete</button></td>
+                <td><button onClick={this.onDelete.bind(this)} >Delete</button></td>
                </tr>
                 
                 )
