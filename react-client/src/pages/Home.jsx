@@ -247,7 +247,7 @@ class Home extends React.Component {
     $('.conditions').html(data.conditions);
     $('.past_Diseases').html(data.past_Diseases);
     $('.currentlly_Medications').html(data.currentlly_Medications);
-    $('.geneticDisease').html(data.genetic_Diseases);
+    $('.genetic_Diseases').html(data.genetic_Diseases);
     $('.allergies').html(data.allergies);
     $('.description').html(data.description);    
   };
@@ -363,7 +363,7 @@ class Home extends React.Component {
               </tr>
               <tr>
                 <td className='currentlly_Medications' style={table2}></td>
-                <td className='geneticDisease' style={table2}></td>
+                <td className='genetic_Diseases' style={table2}></td>
                 <td className='allergies' style={table2}></td>
                 <td className='description' style={table2}></td>
               </tr> 
