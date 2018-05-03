@@ -154,10 +154,14 @@ class Home extends React.Component {
           change:e.target.id
         },()=> console.log(that.state.change,that.state.newVal))
     $.ajax({
-      url: '/update',
-      type: 'POST',
+      url: '/patient',
+      type: 'PUT',
       data: { changes:that.state.change,
-              newVal : that.state.newVal
+              newVal : that.state.newVal,
+              name:that.state.names
+      },
+      success:function(data) {
+        console.log(data)
       }
 })
 
@@ -212,7 +216,9 @@ class Home extends React.Component {
       success: function (res) {
         console.log('Sucess retrieve patient have name: ',res[0].firstName);
         alert('Sucess retrieve patient have name: '+res[0].firstName);
-        that.setState({data:res});
+        that.setState({data:res,
+                        name:res[0].firstname
+        });
         //console.log(that.state.data);
         that.renderData()
       },
@@ -376,11 +382,11 @@ class Home extends React.Component {
               <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="age">Age</button>
               <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="phone">Phone</button>
               <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="conditions">Conditions</button>
-              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="pastDiseases">Past Diseases
+              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="past_Diseases">Past Diseases
               </button>
-              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="currMedications">Curr. Medications
+              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="currentlly_Medications">Curr. Medications
               </button>
-              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="geneticDisease">Genetic Diseases
+              <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="genetic_Diseases">Genetic Diseases
               </button>
               <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="allergies">Allergies</button>
               <button onClick={this.onClick.bind(this)} style={{width:'100%'}} id="description">Description</button>

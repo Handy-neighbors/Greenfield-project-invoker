@@ -23,41 +23,15 @@ exports.createOne = function (req, res) {
 
 //2.update specific info for one patient
 exports.updateOne = function (req, res) {
-	Patient.findOneAndUpdate({firstName:req.body.number},{$set:{
-   //  "firstName":req.body.firstName,
-   //  "lastName":req.body.lastName,
-   //   "gender":req.body.gender,
-   //    "age":req.body.age,
-   //   "phone":req.body.phone,
-   //    "conditions":req.body.conditions,
-   //    "past_Diseases":req.body.past_Diseases,
-   // "currentlly_Medications":req.body.currentlly_Medications,
-   //   " genetic_Diseases":req.body.genetic_Diseases,
-   //    "allergies":req.body.allergies
-
-
-  },function(err,patient){
-		if(err){
-			console.log(err)
-			res.send(500);
-		}
-		else{
-      console.log("data for patient is ubdated");
-      res.send(patient);
-    }
-			
-
-			patient.save(function(err,patient){
-				if(err){
-					console.log(err);
-					res.send(err)
-				}else{
-					console.log('Success updated patient ^_^!');
-					res.send('Success updated patient ^_^!');
-				}
-			})
-		}
-	})
+var changes = req.body.changes
+var name = req._parsedOriginalUrl.path.split('=')[1]
+Patient.findOne({firstName: name},function(err,data){
+  Patient.findOneAndUpdate({firstName: name}, 
+                  { changes : req.body.newVal }, function(err, mod){
+                    res.send(mod)
+                  })
+})
+    
 };
 
 //3.delete one patient
@@ -70,7 +44,7 @@ exports.delete=function(req,res){
              else{
              	Patient.remove(function(err,patient){
              		if(err){
-             			console.log(err);
+             			// console.log(err);
              			res.send(err);
              		}
              		else{
@@ -93,13 +67,14 @@ exports.retrieveOne=function(req,res){
   //req.body.number=JSON.parse(req.body.number);
   //console.log('HERE',req.body);
   //console.log(req)
-  Patient.find({firstName:number},function(err,patient){
+  console.log(req.body.lastName)
+  Patient.find({firstName:number,lastName:req.body.lastName},function(err,patient){
     if(err){
-    	console.log(err)
+    	// console.log(err)
     	res.send(500)
     }
     else{
-    	console.log(patient)
+    	// console.log(patient)
     	res.send(patient)
     }
   })
@@ -109,11 +84,11 @@ exports.retrieveOne=function(req,res){
 exports.retrieveAll=function(req,res){
   Patient.find(function(err,allpatient){
   	if(err){
-  		console.log(err)
+  		// console.log(err)
   		res.send(500);
   	}
   	else{
-  		console.log(allpatient);
+  		// console.log(allpatient);
   		res.send(allpatient)
   	}
   })
