@@ -4,7 +4,7 @@ import React from 'react';
 import $ from 'jquery';
 //the style for the main header
 const header={
-  color:'black',
+  color:'#d0ecf4',
   fontWeight:'bold',
   textAlign:'center',
   fontSize:'40px',
@@ -12,7 +12,7 @@ const header={
 };
 //the style for the main header
 const header2={
-  color:'#ea3212',
+  color:'#d0ecf4',
   fontWeight:'bold',
   textAlign:'center',
   fontSize:'25px',
@@ -22,7 +22,7 @@ const header2={
 };
 //the style for the user
 const user={
-  color:'#1B5494',
+  color:'#d0ecf4',
   fontWeight:'bold',
   textAlign:'center',
   fontSize:'20px',

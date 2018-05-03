@@ -4,16 +4,17 @@ import React from 'react';
 import $ from 'jquery';
 //syle for div to arrange thing
 const main={
-  width: '400px',
-  height: '150px',
-  display: '-webkit-flex',
-  display: 'flex',
-  marginBottom:'-50px',
-  marginLeft:'7%',
+  width: '100%',
+  height: '100%',
+  // display: '-webkit-flex',
+  // display: 'flex',
+  // margin:'auto',
+  // marginBottom:'-50px',
+  margin:'auto',
 }
 //the style for the main header
 const header={
-  color:'black',
+  color:'#d0ecf4',
   fontWeight:'bold',
   textAlign:'center',
   fontSize:'40px',
@@ -21,7 +22,7 @@ const header={
 };
 //the style for number
 const number={
-  color:'black',
+  color:'#d0ecf4',
   fontWeight:'bold',
   textAlign:'center',
   fontSize:'25px',
@@ -29,7 +30,7 @@ const number={
 };
 //the style for number2
 const number2={
-  color:'black',
+  color:'#d0ecf4',
   fontWeight:'bold',
   textAlign:'center',
   fontSize:'25px',
@@ -198,8 +199,9 @@ class NewPatient extends React.Component {
   //what render
   render () {
     return (
-      <div style={{textAlign: 'center'}}>
+      <div className='container' style={{textAlign: 'center'}}>
         <h2 style={header}>Welcome To Medical Record <br/> Please Insert Your Information</h2>
+        <center>
         <div1 style={main}>
           <h3 className="column" style={number}>
           Number:
@@ -268,6 +270,7 @@ class NewPatient extends React.Component {
         </div3>
         <button onClick={this.sentData.bind(this)} style={button}>Submit</button>
         <button onClick={this.home.bind(this)} style={button}>Back to Home</button>
+        </center>
       </div>
     )
   }

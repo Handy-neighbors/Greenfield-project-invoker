@@ -1,24 +1,28 @@
 import React from'react';
-const table2={
-    border: '3px solid black',
-    borderCollapse: 'collapse',
-    padding: '3px',
-    textAlign : 'center',
-    fontSize:'25px',
-    //fontWeight:'bold',
-    color:'white',
-    backgroundColor: 'gray',
-
-}
 const table={
-    border: '3px solid black',
+    // border: '3px solid black',
     borderCollapse: 'collapse',
+    borderRadius:'4px',
     padding: '3px',
     textAlign : 'center',
     fontSize:'25px',
     fontWeight:'bold',
     color:'black',
-    backgroundColor: 'white',
+    marginRight:'10px',
+    backgroundColor: '#d0ecf4',
+}
+//style for td / the changed thing
+const table2={
+    // border: '3px solid black',
+    borderCollapse: 'collapse',
+    borderRadius:'10px',
+    padding: '3px',
+    textAlign : 'center',
+    fontSize:'25px',
+    //fontWeight:'bold',
+    color:'#d0ecf4'
+    // backgroundColor: '#026887',
+
 }
 class PatientsInfo extends React.Component{
         onDelete(){
@@ -45,7 +49,7 @@ class PatientsInfo extends React.Component{
                 <td style={table2}>{this.props.appointment.date}</td>
                 <td style={table2}>{this.props.appointment.patientName}</td>
                 <td style={table2}>{this.props.appointment.situation}</td>
-                <td style={table2}>{this.props.appointment.gender}</td>
+                <td style={table2}>{this.props.appointment.time}</td>
                 <td><button className="btn btn-danger" onClick={this.onDelete.bind(this)} >Delete</button></td>
                </tr>
                 
