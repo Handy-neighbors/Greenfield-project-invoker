@@ -135,6 +135,7 @@ class Home extends React.Component {
     this.handleChanges = this.handleChanges.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.deleteArray=this.deleteArray.bind(this);
+    
   }
   //when change  ... change the
   //patient number
@@ -150,15 +151,17 @@ class Home extends React.Component {
   };
   onClick(e){
     var that = this
+    $('.'+e.target.id).html(that.state.newVal);
+    console.log(that.state.newVal,'whaaaa')
     that.setState({
           change:e.target.id
-        },()=> console.log(that.state.change,that.state.newVal))
+        })
     $.ajax({
       url: '/patient',
       type: 'PUT',
-      data: { changes:that.state.change,
+      data: { changes:e.target.id,
               newVal : that.state.newVal,
-              name:that.state.names
+              name:that.state.name
       },
       success:function(data) {
         console.log(data)
@@ -205,7 +208,7 @@ class Home extends React.Component {
   };
   //for retrieve one patient
   retrieveOne(){
-    console.log('you try to retrieve one patient', typeof this.state.patientName);
+    //console.log('you try to retrieve one patient', typeof this.state.patientName);
     const that=this
     //ajax request to logout
     $.ajax({
@@ -217,7 +220,7 @@ class Home extends React.Component {
         console.log('Sucess retrieve patient have name: ',res[0].firstName);
         alert('Sucess retrieve patient have name: '+res[0].firstName);
         that.setState({data:res,
-                        name:res[0].firstname
+                        name:res[0].firstName
         });
         //console.log(that.state.data);
         that.renderData()
@@ -242,9 +245,9 @@ class Home extends React.Component {
     $('.age').html(data.age);
     $('.phone').html(data.phone);
     $('.conditions').html(data.conditions);
-    $('.pastDiseases').html(data.past_Diseases);
-    $('.currMedications').html(data.currentlly_Medications);
-    $('.geneticDisease').html(data.genetic_Diseases);
+    $('.past_Diseases').html(data.past_Diseases);
+    $('.currentlly_Medications').html(data.currentlly_Medications);
+    $('.genetic_Diseases').html(data.genetic_Diseases);
     $('.allergies').html(data.allergies);
     $('.description').html(data.description);    
   };
@@ -350,7 +353,7 @@ class Home extends React.Component {
                 <td className='age' style={table2}></td>
                 <td className='phone' style={table2}></td>
                 <td className='conditions' style={table2}></td>
-                <td className='pastDiseases' style={table2}></td>
+                <td className='past_Diseases' style={table2}></td>
               </tr>
               <tr>
                 <th style={table}>Curr. Medications</th>
@@ -359,8 +362,8 @@ class Home extends React.Component {
                 <th style={table}>Description</th>
               </tr>
               <tr>
-                <td className='currMedications' style={table2}></td>
-                <td className='geneticDisease' style={table2}></td>
+                <td className='currentlly_Medications' style={table2}></td>
+                <td className='genetic_Diseases' style={table2}></td>
                 <td className='allergies' style={table2}></td>
                 <td className='description' style={table2}></td>
               </tr> 

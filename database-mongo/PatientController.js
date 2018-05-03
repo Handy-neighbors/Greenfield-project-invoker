@@ -23,14 +23,20 @@ exports.createOne = function (req, res) {
 
 //2.update specific info for one patient
 exports.updateOne = function (req, res) {
+  console.log(req.body)
 var changes = req.body.changes
-var name = req._parsedOriginalUrl.path.split('=')[1]
-Patient.findOne({firstName: name},function(err,data){
-  Patient.findOneAndUpdate({firstName: name}, 
-                  { changes : req.body.newVal }, function(err, mod){
+var obj = {}
+obj[changes] = req.body.newVal
+
+
+//var name = req._parsedOriginalUrl.path.split('=')[1]
+// Patient.findOne({firstName: name},function(err,data){
+Patient.findOneAndUpdate({firstName: req.body.name}, 
+                  obj, function(err, mod){
+                    console.log(obj)
                     res.send(mod)
                   })
-})
+//})
     
 };
 
