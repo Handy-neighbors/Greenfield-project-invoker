@@ -63,12 +63,14 @@ exports.retrieveOne=function(req,res){
   console.log(req)
   console.log(req.body.patientName)
   console.log('HEREEEEEEEEEEEE:',req._parsedOriginalUrl.path.split('=')[1]);
-  var number=req._parsedOriginalUrl.path.split('=')[1]
+  var number=req._parsedOriginalUrl.path.split('=')[1].split('%20')
   //req.body.number=JSON.parse(req.body.number);
   //console.log('HERE',req.body);
   //console.log(req)
-  console.log(req.body.lastName)
-  Patient.find({firstName:number,lastName:req.body.lastName},function(err,patient){
+  var first = number[0]
+  var last = number[1]
+  console.log(number,first,last)
+  Patient.find({firstName:first, lastName:last},function(err,patient){
     if(err){
     	// console.log(err)
     	res.send(500)
