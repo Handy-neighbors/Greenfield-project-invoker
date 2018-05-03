@@ -18,7 +18,7 @@ const header1={
 
 //the style for retrieve one patient
 const header3={
-  color:'black',
+  color:'#d0ecf4',
   fontWeight:'bold',
   textAlign:'centezr',
   fontSize:'25px',
@@ -29,8 +29,8 @@ const header3={
 //style for input retrieve one patient
 const input3={
   padding: '10px 10px 10px 10px',
-  marginRight: '-80px',
-  marginLeft: '-30px',
+  // marginRight: 'auto',
+  margin: 'auto',
   color:'black',
   fontSize:'15px',
   border: '2px solid black',
@@ -45,28 +45,31 @@ const button3={
   fontSize:'20px',
   borderRadius: '15px',
   fontFamily: 'Lobster',
+  margin:'auto',
 };
 //style for th / the const thing
 const table={
-    border: '3px solid black',
+    // border: '3px solid black',
     borderCollapse: 'collapse',
+    borderRadius:'4px',
     padding: '3px',
     textAlign : 'center',
     fontSize:'25px',
     fontWeight:'bold',
     color:'black',
-    backgroundColor: 'white',
+    backgroundColor: '#d0ecf4',
 }
 //style for td / the changed thing
 const table2={
-    border: '3px solid black',
+    // border: '3px solid black',
     borderCollapse: 'collapse',
+    borderRadius:'10px',
     padding: '3px',
     textAlign : 'center',
     fontSize:'25px',
     //fontWeight:'bold',
-    color:'white',
-    backgroundColor: 'gray',
+    color:'#d0ecf4'
+    // backgroundColor: '#026887',
 
 }
 //the style for the button logout
@@ -125,11 +128,11 @@ class Home extends React.Component {
       name:"",
       //the data get from retrieve
       data:{},
-      id:0,
+      id:'',
       date:'',
       patientName:'',
       situation:'',
-      gender:'',
+      time:'',
       appointments:[]
     };
     this.handleChanges = this.handleChanges.bind(this);
@@ -296,11 +299,11 @@ class Home extends React.Component {
       type : 'POST',
       url: '/appointments',
       data: {
-        id:++this.state.id,
+        id:this.state.id,
         date: this.state.date,
         patientName:this.state.patientName,
         situation: this.state.situation,
-        gender:this.state.gender
+        time:this.state.time
       }, 
       success: (data) => {
         console.log(data)
@@ -320,17 +323,21 @@ class Home extends React.Component {
     return (
         <div1 className="container">
         <Row>
-          <Col md="6">
+          <Col md="5">
           
         
           <h2 style={header1}>Retrieve data for patient  by his Name</h2>
           <div2 className='row' style={{marginLeft:'auto',marginRight: 'auto'}}>
             <h3 className='col-xs-4 col-xs-offset-1' style={header3}>Get all info for this patient:</h3>
-            <input className='col-xs-1 col-xs-offset-1' value={this.state.patientName} type='text' onChange={this.onWrite1.bind(this)} placeholder="Patient Name" style={input3}></input>
-            <button className='col-xs-2 col-xs-offset-1' onClick={this.retrieveOne.bind(this)} style={button3}>Show the data now</button>
+              <input value={this.state.patientName} type='text' onChange={this.onWrite1.bind(this)} placeholder="Patient Name" style={input3}></input>
+              <br/>
+              <br/>
+           <button className='col-xs-2 col-xs-offset-1 btn btn-block' onClick={this.retrieveOne.bind(this)} style={button3}>Show data</button>              
+
+            
           </div2>
           <div3>
-            <table style={{width:'80%',marginLeft:'auto',marginRight: 'auto',marginTop:'20px'}}>
+            <table style={{width:'80%',marginLeft:'auto',marginRight: 'auto',marginTop:'20px','borderRadius':'10px'}}>
               <tr>
                 <th style={table}>Number</th>
                 <th style={table}>First name</th> 
@@ -406,24 +413,30 @@ class Home extends React.Component {
              <center>
              <div style={{marginRight:'70px',display:"none"}} id="hi">
              <form onSubmit={this.handleSubmit}>  
-           
-          <div>
-            <p style={{fontSize:'20px', textAlign:'center',fontWeight: 'bold'}}>Date:</p>
-            <input type="Date" placeholder="Enter service" style={input3} name="date" value={this.state.date} onChange={this.handleChanges}/>
-          </div>
-          <div>
-           <p style={{fontSize:'20px', textAlign:'center',fontWeight: 'bold'}}>Patient Name:</p>
-            <input type="text" placeholder="Enter Patient Name" style={input3} name="patientName" value={this.state.patientName} onChange={this.handleChanges}/>
-          </div>
-          <div>
-           <p style={{fontSize:'20px', textAlign:'center',fontWeight: 'bold'}}>Situation:</p>
-            <input type="text" placeholder="Enter Situation" style={input3} name="situation" value={this.state.situation} onChange={this.handleChanges}/>
-          </div>
-          <div>
-            <p style={{fontSize:'20px', textAlign:'center',fontWeight: 'bold'}}>Gender:</p>
-            <input type="text" placeholder="Enter Gender" style={input3} name="gender" value={this.state.gender} onChange={this.handleChanges}/>
-          </div>
-          <p></p>
+           <table style={table2}>
+              <tr>
+                <th>Date</th>
+                <th>ID</th>
+                <th>Patient Name</th> 
+                
+              </tr>
+              <tr>
+                <td> <input type="Date" placeholder="Enter Date" style={input3} name="date" value={this.state.date} onChange={this.handleChanges}/></td>
+                <td> <input type="text" placeholder="Enter ID" style={input3} name="id" value={this.state.id} onChange={this.handleChanges}/></td>
+                <td> <input type="text" placeholder="Enter Patient Name" style={input3} name="patientName" value={this.state.patientName} onChange={this.handleChanges}/></td>
+              
+              </tr>
+              <tr>
+                <th>Time</th>
+                <th>Situation</th>
+               
+              </tr>
+              <tr>
+                <td><input type="time" placeholder="Enter Time" style={input3} name="time" value={this.state.time} onChange={this.handleChanges}/></td>
+                <td><input type="text" placeholder="Enter Situation" style={input3} name="situation" value={this.state.situation} onChange={this.handleChanges}/></td>
+                
+              </tr>
+            </table>
         <input  type="submit" value="Submit" style={button3}/>
             </form>
              </div>
@@ -435,7 +448,7 @@ class Home extends React.Component {
            
              <button onClick={this.logout.bind(this)} style={button1}>Logout</button>
              </Col>
-           <Col md="6"> <div style={{margin: '80px'}}>
+           <Col md="7"> <div style={{margin: '80px'}}>
         
         
         <PatientList appointments={this.state.appointments} deleteArray={this.deleteArray}/>

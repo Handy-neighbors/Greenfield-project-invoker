@@ -4,7 +4,7 @@ import React from 'react';
 import $ from 'jquery';
 //the style for the main header
 const header={
-  color:'black',
+  color:'#d0ecf4',
   fontWeight:'bold',
   textAlign:'center',
   fontSize:'40px',
@@ -14,7 +14,7 @@ const header={
 };
 //the style for the main header
 const header2={
-  color:'#ea3212',
+  color:'#d0ecf4',
   fontWeight:'bold',
   textAlign:'center',
   fontSize:'25px',
@@ -24,7 +24,7 @@ const header2={
 };
 //the style for first name
 const fName={
-  color:'#7a00a3',
+  color:'#d0ecf4',
   fontWeight:'bold',
   textAlign:'center',
   fontSize:'20px',
@@ -32,7 +32,7 @@ const fName={
 };
 //the style for last name
 const lName={
-  color:'#7a00a3',
+  color:'#d0ecf4',
   fontWeight:'bold',
   textAlign:'center',
   fontSize:'20px',
@@ -40,7 +40,7 @@ const lName={
 };
 //the style for the user
 const user={
-  color:'#1B5494',
+  color:'#d0ecf4',
   fontWeight:'bold',
   textAlign:'center',
   fontSize:'20px',
@@ -61,7 +61,7 @@ const input={
   display: 'block',
   marginRight: 'auto',
   marginLeft: 'auto',
-  color:'black',
+  color:'#d0ecf4',
   fontSize:'15px',
   border: '2px solid black',
   borderRadius: '15px',
@@ -187,6 +187,7 @@ class SignUp extends React.Component {
         <h3 style={header2}>Have an account ? </h3>
         <button  onClick={this.login.bind(this)} style={button}>Login</button>
         <button  onClick={this.home.bind(this)} style={button}>Back to Home</button>
+        
       </div>
     )
   }
