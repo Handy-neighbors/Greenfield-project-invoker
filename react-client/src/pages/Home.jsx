@@ -245,8 +245,8 @@ class Home extends React.Component {
     $('.age').html(data.age);
     $('.phone').html(data.phone);
     $('.conditions').html(data.conditions);
-    $('.pastDiseases').html(data.past_Diseases);
-    $('.currMedications').html(data.currentlly_Medications);
+    $('.past_Diseases').html(data.past_Diseases);
+    $('.currentlly_Medications').html(data.currentlly_Medications);
     $('.geneticDisease').html(data.genetic_Diseases);
     $('.allergies').html(data.allergies);
     $('.description').html(data.description);    
@@ -353,7 +353,7 @@ class Home extends React.Component {
                 <td className='age' style={table2}></td>
                 <td className='phone' style={table2}></td>
                 <td className='conditions' style={table2}></td>
-                <td className='pastDiseases' style={table2}></td>
+                <td className='past_Diseases' style={table2}></td>
               </tr>
               <tr>
                 <th style={table}>Curr. Medications</th>
@@ -362,7 +362,7 @@ class Home extends React.Component {
                 <th style={table}>Description</th>
               </tr>
               <tr>
-                <td className='currMedications' style={table2}></td>
+                <td className='currentlly_Medications' style={table2}></td>
                 <td className='geneticDisease' style={table2}></td>
                 <td className='allergies' style={table2}></td>
                 <td className='description' style={table2}></td>
