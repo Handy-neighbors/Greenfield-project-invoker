@@ -135,6 +135,7 @@ class Home extends React.Component {
     this.handleChanges = this.handleChanges.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.deleteArray=this.deleteArray.bind(this);
+    
   }
   //when change  ... change the
   //patient number
@@ -150,15 +151,17 @@ class Home extends React.Component {
   };
   onClick(e){
     var that = this
+    $('.'+e.target.id).html(that.state.newVal);
+    console.log(that.state.newVal,'whaaaa')
     that.setState({
           change:e.target.id
-        },()=> console.log(that.state.change,that.state.newVal))
+        })
     $.ajax({
       url: '/patient',
       type: 'PUT',
-      data: { changes:that.state.change,
+      data: { changes:e.target.id,
               newVal : that.state.newVal,
-              name:that.state.names
+              name:that.state.name
       },
       success:function(data) {
         console.log(data)
@@ -205,7 +208,7 @@ class Home extends React.Component {
   };
   //for retrieve one patient
   retrieveOne(){
-    console.log('you try to retrieve one patient', typeof this.state.patientName);
+    //console.log('you try to retrieve one patient', typeof this.state.patientName);
     const that=this
     //ajax request to logout
     $.ajax({
@@ -217,7 +220,7 @@ class Home extends React.Component {
         console.log('Sucess retrieve patient have name: ',res[0].firstName);
         alert('Sucess retrieve patient have name: '+res[0].firstName);
         that.setState({data:res,
-                        name:res[0].firstname
+                        name:res[0].firstName
         });
         //console.log(that.state.data);
         that.renderData()
