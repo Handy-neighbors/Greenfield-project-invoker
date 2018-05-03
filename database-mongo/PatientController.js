@@ -13,7 +13,7 @@ exports.createOne = function (req, res) {
   console.log(patient)
 	patient.save(function(err,patient){
 		if(err){
-			console.log(err);
+		console.log(err);
 			res.send('This number is already taken, choose another one');
 		}else{
 			res.send('Success sent this data and create new patient ')
