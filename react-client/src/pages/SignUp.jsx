@@ -61,7 +61,7 @@ const input={
   display: 'block',
   marginRight: 'auto',
   marginLeft: 'auto',
-  color:'#d0ecf4',
+  color:'black',
   fontSize:'15px',
   border: '2px solid black',
   borderRadius: '15px',

@@ -8,7 +8,7 @@ import PatientList from './PatientList.jsx';
 
 //the style for the main header
 const header1={
-  color:'black',
+  color:'#d0ecf4',
   fontWeight:'bold',
   textAlign:'center',
   fontSize:'50px',
@@ -415,26 +415,27 @@ class Home extends React.Component {
              <form onSubmit={this.handleSubmit}>  
            <table style={table2}>
               <tr>
-                <th>Date</th>
                 <th>ID</th>
+                <th>Date</th>
                 <th>Patient Name</th> 
                 
               </tr>
               <tr>
-                <td> <input type="Date" placeholder="Enter Date" style={input3} name="date" value={this.state.date} onChange={this.handleChanges}/></td>
+                
                 <td> <input type="text" placeholder="Enter ID" style={input3} name="id" value={this.state.id} onChange={this.handleChanges}/></td>
+                <td> <input type="Date" placeholder="Enter Date" style={input3} name="date" value={this.state.date} onChange={this.handleChanges}/></td>
                 <td> <input type="text" placeholder="Enter Patient Name" style={input3} name="patientName" value={this.state.patientName} onChange={this.handleChanges}/></td>
               
               </tr>
               <tr>
+              <th>Situation</th>
                 <th>Time</th>
-                <th>Situation</th>
+                
                
               </tr>
               <tr>
-                <td><input type="time" placeholder="Enter Time" style={input3} name="time" value={this.state.time} onChange={this.handleChanges}/></td>
                 <td><input type="text" placeholder="Enter Situation" style={input3} name="situation" value={this.state.situation} onChange={this.handleChanges}/></td>
-                
+                <td><input type="time" placeholder="Enter Time" style={input3} name="time" value={this.state.time} onChange={this.handleChanges}/></td>
               </tr>
             </table>
         <input  type="submit" value="Submit" style={button3}/>
